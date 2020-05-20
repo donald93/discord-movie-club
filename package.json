@@ -6,6 +6,7 @@
   "dependencies": {
     "@types/node": "^14.0.1",
     "discord.js": "^12.2.0",
+    "firebase": "^7.14.4",
     "tslint": "^6.1.2"
   },
   "devDependencies": {},
