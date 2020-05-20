@@ -1,4 +1,4 @@
-import { Command } from "../command";
+import { Command } from '../abstractions/command';
 
 export class CreateCategoryPoll extends Command {
   text = "createCategoryPoll";

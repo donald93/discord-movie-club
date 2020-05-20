@@ -1,4 +1,4 @@
-import { Command } from "../command";
+import { Command } from '../abstractions/command';
 
 export class GetTheme extends Command {
   text = "getTheme";
