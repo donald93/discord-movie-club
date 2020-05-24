@@ -7,20 +7,31 @@ export class Initialize extends Command {
   text = "init";
   clubRepo = new ClubRepository();
 
-  execute(msg: Message) {
+  async execute(msg: Message) {
     if (msg.content === this.commandText()) {
-      const guildId = msg.guild.id;
+      if (!!msg.guild) {
+        const guildId = msg.guild.id;
 
-      const club = {
-        id: guildId,
-        themes: [],
-        currentTheme: null,
-        currentMovie: null,
-        currentPoll: null,
-      };
+        const club = {
+          id: guildId,
+          themes: [],
+          currentTheme: null,
+          currentMovie: null,
+          currentPoll: null,
+        };
 
-      this.clubRepo.addItem(club);
-      //   msg.reply("you've initialized the bot for this server");
+        const added = (await this.clubRepo.addItem(club)) !== "";
+
+        if (added) {
+          msg.channel.send("You've initialized the bot for this server.");
+        } else {
+          msg.channel.send("A club on this server already exists.");
+        }
+      } else {
+        msg.channel.send(
+          "You may not initialize a movie club from a direct message."
+        );
+      }
     }
   }
 }
